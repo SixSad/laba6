@@ -18,7 +18,7 @@ function createClassic(array $attributes, $sqlData): bool
         }
         array_push($striped, strip_tags($value));
     }
-    $query = "INSERT INTO classics (author, title, category, year) VALUES ('$striped[0]', '$striped[1]', '$striped[2]', '$striped[3]')";
+    $query = "INSERT INTO classics (title, author, category, year) VALUES ('$striped[0]', '$striped[1]', '$striped[2]', '$striped[3]')";
 
     sqlError($sqlData, $query);
 
