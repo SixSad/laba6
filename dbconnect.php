@@ -3,6 +3,7 @@ $host = 'localhost';
 $database = 'publications';
 $user = 'root';
 $password = '';
+$root = 'laba6';
 
 try {
     $mysqli = mysqli_connect($host, $user, $password, $database);
