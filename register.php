@@ -14,9 +14,61 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-    <title>Home</title>
+    <title>Login</title>
 </head>
 <body>
-<h2>Регистрация</h2>
+<?php
+require_once 'dbconnect.php';
+require_once 'Src\Query.php';
+require_once 'Src\Auth.php';
+?>
+<?php
+if (!empty($_SESSION)) {
+    header('Location: classics.php');
+}
+?>
+
+
+<div class="container-fluid text-center my-5">
+    <?php
+    if (!empty($_POST)) {
+        echo Auth::register($_POST['login'], md5($_POST['password']), $mysqli);
+//        echo " <script> window.setTimeout(function() { window.location = 'login.php'; }, 1000) </script>";
+    }
+    ?>
+</div>
+<div class="m-3 d-flex justify-content-end">
+    <div>
+        <button class="btn btn-primary rounded fs-5"
+                onclick="window.location.href='<?php echo "/$root/register.php" ?>'">Register
+        </button>
+        <button class="btn btn-primary rounded fs-5" onclick="window.location.href='<?php echo "/$root/login.php" ?>'">
+            Login
+        </button>
+    </div>
+</div>
+
+<div class="container-fluid d-flex justify-content-center mt-5">
+    <div class="form-container d-flex flex-column  col-4  shadow bg-white px-5 py-4"
+         style="border-radius: 40px; max-height: 550px">
+        <form class="d-flex row g-3" method="post">
+            <h2 class="text-center">Register</h2>
+            <div class="col-12">
+                <label class="form-label ms-2">Login</label>
+                <input type="text" class="form-control rounded-pill ps-3 py-2" name="login" placeholder="login">
+            </div>
+            <div class="col-12">
+                <label class="form-label ms-2">Password</label>
+                <input type="password" class="form-control rounded-pill ps-3 py-2" name="password"
+                       placeholder="password">
+            </div>
+            <div class="col-12 d-flex justify-content-center" style="margin-top: 30px; a">
+                <button type="submit" name="submit" class="btn btn-primary rounded fs-5">Register</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

@@ -21,7 +21,21 @@
 <?php
 require_once 'dbconnect.php';
 require_once 'Src/Query.php';
+session_start();
 ?>
+<?php
+if (empty($_SESSION)) {
+    header('Location: classics.php');
+}
+?>
+
+<div class="m-3 d-flex justify-content-end">
+
+    <button class="btn btn-primary rounded fs-5"
+            onclick="window.location.href='<?php echo "/$root/logout.php" ?>'">Logout
+    </button>
+
+</div>
 <div class="container-fluid">
     <div class="container-fluid text-center m-5"><?php
         if (!empty($_POST['submit']) && $_POST['submit'] == 'UPDATE') {
@@ -46,18 +60,22 @@ require_once 'Src/Query.php';
                     <p>Category: <?= $row['category']; ?></p>
                     <p>Year: <?= $row['year']; ?></p>
                     <div>
-                        <button class="btn btn-danger rounded fs-6" onclick="window.location.href='?status=del&id=<?php echo $row['id'] ?>'">Delete</button>
+                        <button class="btn btn-danger rounded fs-6"
+                                onclick="window.location.href='?status=del&id=<?php echo $row['id'] ?>'">Delete
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="form-container d-flex flex-column  col-4  shadow bg-white  px-5 py-3" style="border-radius: 40px; max-height: 550px">
+        <div class="form-container d-flex flex-column  col-4  shadow bg-white  px-5 py-3"
+             style="border-radius: 40px; max-height: 550px">
             <form class="d-flex row g-3" method="post">
                 <h2 class="text-center">Update book</h2>
                 <div class="col-12">
                     <label class="form-label ms-2">title</label>
-                    <input type="text" class="form-control rounded-pill ps-3 py-2" name="title" placeholder="title" value="<?= $row['title']; ?>">
+                    <input type="text" class="form-control rounded-pill ps-3 py-2" name="title" placeholder="title"
+                           value="<?= $row['title']; ?>">
                 </div>
                 <div class="col-12">
                     <label class="form-label ms-2">Author</label>
@@ -75,27 +93,16 @@ require_once 'Src/Query.php';
                            placeholder="date" value=" <?= $row['year']; ?>">
                 </div>
                 <div class="col-12 d-flex justify-content-center" style="margin-top: 30px; a">
-                    <button type="submit" name="submit" value="UPDATE" class="btn btn-primary rounded fs-5" >Add</button>
+                    <button type="submit" name="submit" value="UPDATE" class="btn btn-primary rounded fs-5">Add</button>
                 </div>
             </form>
 
         </div>
     </div>
-    <button class="btn btn-primary rounded fs-5" onclick="window.location.href='<?php echo "/$root/classics.php" ?>'">Back</button>
+    <button class="btn btn-primary rounded fs-5" style="margin-top: 250px" onclick="window.location.href='<?php echo "/$root/classics.php" ?>'">
+        Back
+    </button>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

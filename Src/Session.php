@@ -14,8 +14,4 @@ class Session
         return $_SESSION[$name] ?? null;
     }
 
-    static public function clear($name)
-    {
-        unset($_SESSION[$name]);
-    }
 }

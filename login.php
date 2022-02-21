@@ -21,16 +21,45 @@
 require_once 'dbconnect.php';
 require_once 'Src\Query.php';
 require_once 'Src\Auth.php';
+session_start();
+?>
+<?php
+if(!empty($_SESSION)){
+    header('Location: classics.php');
+}
 ?>
 
 <div class="container-fluid text-center my-5">
     <?php
     if (!empty($_POST)) {
-        echo Auth::login($_POST['login'],$_POST['password'],$mysqli);
+        echo Auth::login($_POST['login'], $_POST['password'], $mysqli);
     }
     ?>
+    <?php if (Auth::user()) {
+        echo " <script> window.setTimeout(function() { window.location = 'classics.php'; }, 1000) </script>";
+    } ?>
 </div>
-
+<div class="m-3 d-flex justify-content-end">
+    <div>
+        <?php
+        if (empty(Auth::user())):?>
+            <button class="btn btn-primary rounded fs-5"
+                    onclick="window.location.href='<?php echo "/$root/register.php" ?>'">Register
+            </button>
+            <button class="btn btn-primary rounded fs-5"
+                    onclick="window.location.href='<?php echo "/$root/login.php" ?>'">Login
+            </button>
+        <?php
+        else:
+            ?>
+            <button class="btn btn-primary rounded fs-5"
+                    onclick="window.location.href='<?php echo "/$root/logout.php" ?>'">Logout
+            </button>
+        <?php
+        endif;
+        ?>
+    </div>
+</div>
 
 <div class="container-fluid d-flex justify-content-center mt-5">
     <div class="form-container d-flex flex-column  col-4  shadow bg-white px-5 py-4"
@@ -50,6 +79,7 @@ require_once 'Src\Auth.php';
                 <button type="submit" name="submit" class="btn btn-primary rounded fs-5">LogIn</button>
             </div>
         </form>
+
     </div>
 </div>
 
