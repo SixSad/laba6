@@ -99,7 +99,8 @@ if (empty($_SESSION)) {
 
         </div>
     </div>
-    <button class="btn btn-primary rounded fs-5" style="margin-top: 250px" onclick="window.location.href='<?php echo "/$root/classics.php" ?>'">
+    <button class="btn btn-primary rounded fs-5" style="margin-top: 250px"
+            onclick="window.location.href='<?php echo "/$root/classics.php" ?>'">
         Back
     </button>
 </div>

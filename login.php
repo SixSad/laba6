@@ -24,7 +24,7 @@ require_once 'Src\Auth.php';
 session_start();
 ?>
 <?php
-if(!empty($_SESSION)){
+if (!empty($_SESSION)) {
     header('Location: classics.php');
 }
 ?>
